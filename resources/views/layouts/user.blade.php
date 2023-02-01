@@ -40,7 +40,8 @@
                 <li class="nav-con"><i class="fa-solid fa-folder-open "></i><a href="{{ route('user.dashboard') }}"
                         class="ml-0.5">Dashboard</a></li>
                 <li class="nav-type">PEMINJAMAN</li>
-                <li class="nav-con"><i class="fa-solid fa-book"></i><a href="" class="ml-0.5">Pinjam Buku</a>
+                <li class="nav-con"><i class="fa-solid fa-book"></i><a href="{{ route('user.form.peminjaman') }}"
+                        class="ml-0.5">Pinjam Buku</a>
                 </li>
                 <li class="nav-con"><i class="fa-solid fa-address-book"></i><a href="" class="ml-0.5">Riwayat
                         Peminjaman</a>

@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use Illuminate\Http\Request;
 
-class PeminjanController extends Controller
+class PeminjamanController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function formPeminjaman()
     {
-        //
+        $bukus = Buku::get()->all(); 
+        return view('user.form_peminjaman', compact('bukus'));
     }
 
     /**
