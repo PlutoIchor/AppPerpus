@@ -28,6 +28,7 @@ class User extends Authenticatable
         'verif',
         'role',
         'join_date',
+        'foto',
         'terakhir_login'
     ];
 
@@ -52,11 +53,16 @@ class User extends Authenticatable
 
     public function peminjamans()
     {
-        return $this->hasMany(Peminjaman::class);
+        return $this->hasMany(Peminjaman::class, 'id_anggota');
     }
 
-    public function pesans()
+    public function pesan_terkirim()
     {
-        return $this->hasMany(Pesan::class);
+        return $this->hasMany(Pesan::class, 'id_pengirim');
+    }
+
+    public function pesan_diterima()
+    {
+        return $this->hasMany(Pesan::class, 'id_penerima');
     }
 }

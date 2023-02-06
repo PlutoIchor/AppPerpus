@@ -37,17 +37,27 @@
         </div>
         <div class="content-nav mt-3" style="color: white">
             <ul class="list-nav" style="list-style: none">
-                <li class="nav-con"><i class="fa-solid fa-folder-open "></i><a href="{{ route('user.dashboard') }}"
+                <li class="nav-con"><i class="fa-solid fa-folder-open "></i><a href="{{ route('admin.dashboard') }}"
                         class="ml-0.5">Dashboard</a></li>
-                <li class="nav-type">PEMINJAMAN</li>
-                <li class="nav-con"><i class="fa-solid fa-book"></i><a href="{{ route('user.form.peminjaman') }}"
-                        class="ml-0.5">Pinjam Buku</a>
+                <li class="nav-type">MASTER DATA</li>
+                <li class="nav-con"><i class="fa-solid fa-users"></i><a href="{{ route('admin.anggota') }}"
+                        class="ml-0.5">Data Anggota</a>
                 </li>
-                <li class="nav-con"><i class="fa-solid fa-book-bookmark"></i><a
-                        href="{{ route('user.riwayat.peminjaman') }}" class="ml-0.5">Riwayat</a>
+                <li class="nav-con"><i class="fa-solid fa-user-pen"></i></i><a href="{{ route('admin.penerbit') }}"
+                        class="ml-0.5">Data Penerbit</a>
                 </li>
-                <li class="nav-con"><i class="fa-solid fa-hand-holding-hand"></i><a
-                        href="{{ route('user.riwayat.pengembalian') }}" class="ml-0.5">Pengembalian</a>
+                <li class="nav-con"><i class="fa-solid fa-user-secret"></i><a
+                        href="{{ route('admin.admin') }}" class="ml-0.5">Data Admin</a>
+                </li>
+                <li class="nav-con"><i class="fa-solid fa-bookmark"></i></i><a
+                        href="" class="ml-0.5">Data Peminjaman</a>
+                </li>
+                <li class="nav-type">KATALOG BUKU</li>
+                <li class="nav-con"><i class="fa-solid fa-book"></i><a
+                        href="" class="ml-0.5">Buku</a>
+                </li>
+                <li class="nav-con"><i class="fa-solid fa-hashtag"></i><a
+                        href="" class="ml-0.5">Kategori</a>
                 </li>
                 <li class="nav-type">PESAN</li>
                 <li class="nav-con"><i class="fa-solid fa-inbox"></i><a href="{{ route('user.inbox') }}"
@@ -67,8 +77,11 @@
                         class="ml-0.5">Kirim Pesan</a>
                 </li>
                 <li class="nav-type">LAINNYA</li>
-                <li class="nav-con"><i class="fa-solid fa-id-card-clip"></i><a href="{{ route('user.profil') }}"
-                        class="ml-0.5">Profil</a>
+                <li class="nav-con"><i class="fa-solid fa-file-lines"></i><a href="" class="ml-0.5">Laporan
+                        Perpustakaan</a>
+                </li>
+                <li class="nav-con"><i class="fa-solid fa-tablet-screen-button"></i></i><a href=""
+                        class="ml-0.5">Identitas Aplikasi</a>
                 </li>
                 <li class="nav-con"><i class="fa-solid fa-right-from-bracket"></i><a href="{{ route('logout') }}"
                         class="ml-0.5">Logout</a>

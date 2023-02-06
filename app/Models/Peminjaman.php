@@ -23,12 +23,12 @@ class Peminjaman extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_anggota');
     }
 
 
     public function buku()
     {
-        return $this->belongsTo(Buku::class);
+        return $this->belongsTo(Buku::class, 'id_buku');
     }
 }

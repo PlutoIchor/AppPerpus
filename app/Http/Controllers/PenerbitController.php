@@ -12,11 +12,42 @@ class PenerbitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function viewPenerbit()
     {
-        //
+        $penerbits = Penerbit::get();
+        return view('admin.penerbit', compact('penerbits'));
     }
 
+    public function createPenerbit(Request $request)
+    {
+        $penerbit = Penerbit::create([
+            'kode_penerbit' => $request->kode_penerbit,
+            'nama_penerbit' => $request->nama_penerbit,
+            'verif_penerbit' => 'verified'
+        ]);
+
+        return redirect()->route('admin.penerbit')->with('successAdd', "Berhasil menambah penerbit '$penerbit->nama_penerbit'");
+    }
+
+    public function updatePenerbit(Request $request, $id_penerbit)
+    {
+        $penerbit = Penerbit::find($id_penerbit);
+        $nama_penerbit = $penerbit->nama_penerbit;
+        $penerbit->kode_penerbit = $request->kode_penerbit;
+        $penerbit->nama_penerbit = $request->nama_penerbit;
+        $penerbit->save();
+
+        return redirect()->route('admin.penerbit')->with('successAdd', "Berhasil mengubah penerbit '$nama_penerbit'");
+    }
+
+    public function deletePenerbit($id_penerbit)
+    {
+        $penerbit = Penerbit::find($id_penerbit);
+        $nama_penerbit = $penerbit->nama_penerbit;
+        $penerbit->delete();
+
+        return redirect()->route('admin.penerbit')->with('successAdd', "Berhasil menghapus penerbit '$nama_penerbit'");
+    }
     /**
      * Show the form for creating a new resource.
      *

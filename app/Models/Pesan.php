@@ -14,4 +14,13 @@ class Pesan extends Model
         'email_app',
         'nomor_hp'
     ];
+
+    public function penerima()
+    {
+        return $this->belongsTo(User::class, 'id_penerima');
+    }
+    public function pengirim()
+    {
+        return $this->belongsTo(User::class, 'id_pengirim');
+    }
 }

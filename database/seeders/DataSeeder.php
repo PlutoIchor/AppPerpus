@@ -26,11 +26,12 @@ class DataSeeder extends Seeder
             'kode_user' => 'U01',
             'nis' => '12067',
             'fullname' => 'Christian Dimas',
-            'username' => 'Dimas', 
+            'username' => 'Dimas',
             'password' => Hash::make('password'),
             'kelas' => '12 RPL',
             'verif' => 'verified',
             'role' =>  'user',
+            'foto' => 'profil.png',
             'join_date' => now(),
         ]);
 
@@ -38,7 +39,7 @@ class DataSeeder extends Seeder
             'kode_user' => 'A01',
             'nis' => '12068',
             'fullname' => 'Dimas',
-            'username' => 'Pluto', 
+            'username' => 'Pluto',
             'password' => Hash::make('password'),
             'kelas' => '12 RPL',
             'verif' => 'verified',
@@ -48,34 +49,34 @@ class DataSeeder extends Seeder
 
         Penerbit::create([
             'kode_penerbit' => 'P01',
-            'nama_penerbit'=> 'Mangareader',
+            'nama_penerbit' => 'Mangareader',
             'verif_penerbit' => 'verified'
         ]);
 
         Penerbit::create([
             'kode_penerbit' => 'P02',
-            'nama_penerbit'=> 'Gramedia',
+            'nama_penerbit' => 'Gramedia',
             'verif_penerbit' => 'verified'
         ]);
 
         Kategori::create([
             'kode_kategori' => 'K01',
-            'nama_kategori'=> 'Historical'
+            'nama_kategori' => 'Historical'
         ]);
 
         Kategori::create([
             'kode_kategori' => 'K02',
-            'nama_kategori'=> 'Science'
+            'nama_kategori' => 'Science'
         ]);
 
         Kategori::create([
             'kode_kategori' => 'K03',
-            'nama_kategori'=> 'Action'
+            'nama_kategori' => 'Action'
         ]);
 
         Kategori::create([
             'kode_kategori' => 'K04',
-            'nama_kategori'=> 'Drama'
+            'nama_kategori' => 'Drama'
         ]);
 
         Buku::create([
@@ -110,17 +111,7 @@ class DataSeeder extends Seeder
             'j_buku_rusak' => 1,
             'foto' => 'punpun.jpg'
         ]);
-        Buku::create([
-            'judul_buku' => 'Berserk',
-            'id_kategori' => 3,
-            'id_penerbit' => 1,
-            'pengarang' => 'Kentaro Miura',
-            'tahun_terbit' => 1989,
-            'j_buku_baik' => 100,
-            'j_buku_rusak' => 0,
-            'foto' => 'berserk.jpg'
-        ]);
-        
+
         Peminjaman::create([
             'id_anggota' => 1,
             'id_buku' => 1,
@@ -149,11 +140,56 @@ class DataSeeder extends Seeder
         ]);
 
         Pesan::create([
-            'id_penerima' => 2,
-            'id_pengirim'=> 1,
+            'id_penerima' => 1,
+            'id_pengirim' => 2,
             'judul_pesan' => 'Rekomendasi buku baru',
             'isi_pesan' => 'Bacalah buku terbaru perpus, Vagabond',
             'status' => 'terkirim',
+            'tanggal_kirim' => now(),
+        ]);
+
+        Pesan::create([
+            'id_penerima' => 1,
+            'id_pengirim' => 2,
+            'judul_pesan' => 'Perpanjangan keanggotaan perpustakaan',
+            'isi_pesan' => 'Keanggotaanmu telah diperbarui hari ini',
+            'status' => 'terkirim',
+            'tanggal_kirim' => now(),
+        ]);
+
+        Pesan::create([
+            'id_penerima' => 1,
+            'id_pengirim' => 2,
+            'judul_pesan' => 'Selamat datang!',
+            'isi_pesan' => 'Terima kasih telah bergabung dengan kami!',
+            'status' => 'terbaca',
+            'tanggal_kirim' => now(),
+        ]);
+
+        Pesan::create([
+            'id_penerima' => 2,
+            'id_pengirim' => 1,
+            'judul_pesan' => 'Request seri komik DC',
+            'isi_pesan' => 'Apakah bisa untuk perpustakaan menambahkan seri komik DC?',
+            'status' => 'terkirim',
+            'tanggal_kirim' => now(),
+        ]);
+
+        Pesan::create([
+            'id_penerima' => 2,
+            'id_pengirim' => 1,
+            'judul_pesan' => 'Request seri manga Jojo',
+            'isi_pesan' => 'Apakah bisa untuk perpustakaan menambahkan seri manga Jojo?',
+            'status' => 'terkirim',
+            'tanggal_kirim' => now(),
+        ]);
+
+        Pesan::create([
+            'id_penerima' => 2,
+            'id_pengirim' => 1,
+            'judul_pesan' => 'Kemana buku Atlas Dunia',
+            'isi_pesan' => 'Minggu lalu, saya melihat ada buku atlas dunia, tapi hari ini tidak ada, kenapa begitu?',
+            'status' => 'terbaca',
             'tanggal_kirim' => now(),
         ]);
     }
