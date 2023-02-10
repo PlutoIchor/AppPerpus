@@ -14,7 +14,12 @@
 
         </center>
     </div>
-    <form class="m-auto w-100 p-3 border rounded" method="POST" action="{{ route('user.create.peminjaman') }}">
+    @if (\Session::has('successAdd'))
+        <div class="alert alert-success d-flex align-items-center">
+            {{ \Session::get('successAdd') }}
+        </div>
+    @endif
+    <form class="m-auto w-100 p-3 border rounded" method="POST" action="{{ route('user.update.profil') }}" enctype="multipart/form-data">
         @csrf
         <h4 class="mb-2">Edit Profil</h4>
         <hr>

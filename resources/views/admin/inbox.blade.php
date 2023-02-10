@@ -1,7 +1,13 @@
-@extends('layouts.user')
+@extends('layouts.admin')
 
 @section('content')
     <h2><b>Inbox</b></h2>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Pesan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Inbox</li>
+        </ol>
+    </nav>
     <hr>
     <div class="mt-4">
         @foreach ($inbox as $pesan)

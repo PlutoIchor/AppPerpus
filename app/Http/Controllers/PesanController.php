@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pesan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,27 +16,59 @@ class PesanController extends Controller
      */
     public function yourInbox()
     {
-        $inbox = Pesan::where('id_penerima','=',Auth::user()->id)->get();
-        return view('user.inbox', compact('inbox'));
+        $inbox = Pesan::where('id_penerima','=',Auth::user()->id)->latest()->paginate(3)->withQueryString();
+        if(Auth::user()->role == 'user')
+        {
+            return view('user.inbox', compact('inbox'));
+
+        }
+        return view('admin.inbox', compact('inbox'));
     }
 
     public function yourMessages()
     {
-        $messages = Pesan::where('id_pengirim','=',Auth::user()->id)->get();
-        return view('user.kirim_pesan', compact('messages'));
+        $messages = Pesan::where('id_pengirim','=',Auth::user()->id)->latest()->paginate(3)->withQueryString();
+        if(Auth::user()->role == 'user')
+        {
+            return view('user.kirim_pesan', compact('messages'));
+        }
+        return view('admin.kirim_pesan', compact('messages'));
     }
 
     public function readMessage($id_pesan)
     {
         $pesan = Pesan::find($id_pesan);
-        if($pesan->status == 'terkirim')
+        if($pesan->status == 'terkirim' && $pesan->penerima->id == Auth::user()->id)
         {
             $pesan->status = 'terbaca';
             $pesan->save();
         }
-        return view('user.pesan', compact('pesan'));
+        if(Auth::user()->role == 'user')
+        {
+            return view('user.pesan', compact('pesan'));
+
+        }
+        return view('admin.pesan', compact('pesan'));
     }
 
+    public function createPesan(Request $request)
+    {
+        $penerima = User::where('username',$request->username)->first();
+        if(!isset($penerima))
+        {
+            return redirect()->back()->with('fail', 'User tidak ditemukan. Periksa apakah username yang dimasukkan sudah tepat');
+        }
+        Pesan::create([
+            'id_penerima' => $penerima->id,
+            'id_pengirim' => Auth::user()->id,
+            'judul_pesan' => $request->judul_pesan,
+            'isi_pesan' => $request->isi_pesan,
+            'status' => 'terkirim',
+            'tanggal_kirim' => now()
+        ]);
+
+        return redirect()->route('pesan.terkirim')->with('successAdd', "Berhasil mengirim pesan ke '$penerima->username'");
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -16,13 +16,13 @@ class UserController extends Controller
      */
     public function anggota()
     {
-        $anggotas = User::where('role','user')->get();
+        $anggotas = User::where('role', 'user')->paginate(5)->withQueryString();
         return view('admin.anggota', compact('anggotas'));
     }
 
     public function admin()
     {
-        $admins = User::where('role','admin')->get();
+        $admins = User::where('role', 'admin')->paginate(5)->withQueryString();
         return view('admin.admin', compact('admins'));
     }
 
@@ -39,10 +39,11 @@ class UserController extends Controller
         return redirect()->route('admin.admin')->with('successAdd', "Berhasil mengubah data admin '$nama_admin'");
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
         return view('auth.login');
-      }
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -93,6 +94,60 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('admin.anggota')->with('successAdd', "Berhasil mengubah data anggota '$nama_anggota'");
+    }
+
+    public function updateProfil(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        if ($request->foto == null && $request->password == null) {
+            $user->update([
+                'username' => $request->username,
+                'fullname' => $request->fullname,
+                'nis' => $request->nis,
+                'kelas' => $request->kelas,
+                'alamat' => $request->alamat,
+            ]);
+
+            return redirect()->back()->with('successAdd', 'Berhasil mengubah profil');
+        } elseif ($request->foto == null) {
+            $user->update([
+                'username' => $request->username,
+                'fullname' => $request->fullname,
+                'nis' => $request->nis,
+                'kelas' => $request->kelas,
+                'alamat' => $request->alamat,
+                'password' => Hash::make($request->password)
+            ]);
+
+            return redirect()->back()->with('successAdd', 'Berhasil mengubah profil');
+        } elseif ($request->password == null) {
+            $imageName = time() . '.' . $request->foto->extension();
+            $request->foto->move(public_path('img'), $imageName);
+            $user->update([
+                'username' => $request->username,
+                'fullname' => $request->fullname,
+                'nis' => $request->nis,
+                'kelas' => $request->kelas,
+                'alamat' => $request->alamat,
+                'foto' => $imageName
+            ]);
+
+            return redirect()->back()->with('successAdd', 'Berhasil mengubah profil');
+        } else {
+            $imageName = time() . '.' . $request->foto->extension();
+            $request->foto->move(public_path('img'), $imageName);
+            $user->update([
+                'username' => $request->username,
+                'fullname' => $request->fullname,
+                'nis' => $request->nis,
+                'kelas' => $request->kelas,
+                'alamat' => $request->alamat,
+                'foto' => $imageName,
+                'password' => $request->password
+            ]);
+
+            return redirect()->back()->with('successAdd', 'Berhasil mengubah profil');
+        }
     }
 
     public function deleteAnggota($id_anggota)

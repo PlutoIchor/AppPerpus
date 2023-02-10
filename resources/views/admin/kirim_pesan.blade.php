@@ -1,7 +1,13 @@
-@extends('layouts.user')
+@extends('layouts.admin')
 
 @section('content')
     <h2><b>Pesan Terkirim</b></h2>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Pesan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Pesan Terkirim</li>
+        </ol>
+    </nav>
     <hr>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kirimPesan">

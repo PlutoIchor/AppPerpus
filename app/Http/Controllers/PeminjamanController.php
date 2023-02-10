@@ -28,6 +28,12 @@ class PeminjamanController extends Controller
         $peminjamans = Peminjaman::where('id_anggota', '=', Auth::user()->id)->get();
         return view('user.peminjaman', compact('peminjamans'));
     }
+
+    public function laporanPeminjaman()
+    {
+        $peminjamans = Peminjaman::paginate(5)->withQueryString();
+        return view('admin.peminjaman', compact('peminjamans'));
+    }
     /**
      * Show the form for creating a new resource.
      *

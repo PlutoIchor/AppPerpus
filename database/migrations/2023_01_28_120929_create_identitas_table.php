@@ -19,6 +19,7 @@ class CreateIdentitasTable extends Migration
             $table->char('email_app', 125);
             $table->char('nomor_hp', 50);
             $table->text('alamat');
+            $table->text('foto');
             $table->timestamps();
         });
     }

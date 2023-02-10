@@ -50,17 +50,17 @@
                         href="{{ route('admin.admin') }}" class="ml-0.5">Data Admin</a>
                 </li>
                 <li class="nav-con"><i class="fa-solid fa-bookmark"></i></i><a
-                        href="" class="ml-0.5">Data Peminjaman</a>
+                        href="{{ route('admin.peminjaman') }}" class="ml-0.5">Data Peminjaman</a>
                 </li>
                 <li class="nav-type">KATALOG BUKU</li>
                 <li class="nav-con"><i class="fa-solid fa-book"></i><a
-                        href="" class="ml-0.5">Buku</a>
+                        href="{{ route('admin.buku') }}" class="ml-0.5">Buku</a>
                 </li>
                 <li class="nav-con"><i class="fa-solid fa-hashtag"></i><a
-                        href="" class="ml-0.5">Kategori</a>
+                        href="{{ route('admin.kategori') }}" class="ml-0.5">Kategori</a>
                 </li>
                 <li class="nav-type">PESAN</li>
-                <li class="nav-con"><i class="fa-solid fa-inbox"></i><a href="{{ route('user.inbox') }}"
+                <li class="nav-con"><i class="fa-solid fa-inbox"></i><a href="{{ route('inbox') }}"
                         class="ml-0.5">Inbox
                         {{-- Kalau user tidak ada pesan, tidak ada pop-up inbox --}}
                         @if (Auth::user()->pesan_diterima->where('status', '=', 'terkirim')->count() == 0)
@@ -73,14 +73,14 @@
                 </li>
                 @endif
                 </li>
-                <li class="nav-con"><i class="fa-solid fa-message"></i><a href="{{ route('user.pesan.terkirim') }}"
-                        class="ml-0.5">Kirim Pesan</a>
+                <li class="nav-con"><i class="fa-solid fa-message"></i><a href="{{ route('pesan.terkirim') }}"
+                        class="ml-0.5">Pesan Terkirim</a>
                 </li>
                 <li class="nav-type">LAINNYA</li>
                 <li class="nav-con"><i class="fa-solid fa-file-lines"></i><a href="" class="ml-0.5">Laporan
                         Perpustakaan</a>
                 </li>
-                <li class="nav-con"><i class="fa-solid fa-tablet-screen-button"></i></i><a href=""
+                <li class="nav-con"><i class="fa-solid fa-tablet-screen-button"></i></i><a href="{{ route('admin.identitas') }}"
                         class="ml-0.5">Identitas Aplikasi</a>
                 </li>
                 <li class="nav-con"><i class="fa-solid fa-right-from-bracket"></i><a href="{{ route('logout') }}"

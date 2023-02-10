@@ -15,12 +15,12 @@ class CreateBukusTable extends Migration
     {
         Schema::create('bukus', function (Blueprint $table) {
             $table->id();
-            $table->char('judul_buku');
+            $table->char('judul_buku')->unique();
             $table->foreignId('id_kategori')->references('id')->on('kategoris')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('id_penerbit')->references('id')->on('penerbits')->onUpdate('cascade')->onDelete('cascade');
             $table->char('pengarang', 125);
             $table->integer('tahun_terbit');
-            $table->binary('foto')->nullable();
+            $table->text('foto')->nullable();
             $table->integer('lsbn')->nullable();
             $table->integer('j_buku_baik');
             $table->integer('j_buku_rusak');

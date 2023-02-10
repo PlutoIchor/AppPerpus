@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.admin')
 
 @section('content')
     @if ($pesan->pengirim->id == Auth::user()->id)

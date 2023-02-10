@@ -32,4 +32,9 @@
             </div>
         </div>
     </div>
+    <div class="h-auto">
+        <center class="mt-5">
+            <img src="/img/{{ $foto }}" class="rounded img-fluid" style="width: 300px;" />
+        </center>
+    </div>
 @endsection

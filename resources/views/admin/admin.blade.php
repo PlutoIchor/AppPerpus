@@ -67,34 +67,36 @@
             </div>
         </div>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="table-layout: fixed">
         <thead class="thead-dark">
             <tr>
-                <th scope="col" class="text-center">No</th>
-                <th scope="col" class="text-center">Kode Admin</th>
-                <th scope="col" class="text-center">Nama Lengkap</th>
-                <th scope="col" class="text-center">Username</th>
-                <th scope="col" class="text-center">Terakhir Login</th>
-                <th scope="col" class="text-center">Aksi</th>
+                <th scope="col" class="text-center align-middle">No</th>
+                <th scope="col" class="text-center align-middle">Kode Admin</th>
+                <th scope="col" class="text-center align-middle" colspan="3">Nama Lengkap</th>
+                <th scope="col" class="text-center align-middle" colspan="2">Username</th>
+                <th scope="col" class="text-center align-middle" colspan="2">Terakhir Login</th>
+                <th scope="col" class="text-center align-middle" colspan="2">Aksi</th>
             </tr>
         </thead>
         <tbody>
+            <?php $count = 1; ?>
             @foreach ($admins as $a)
                 <tr>
-                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td class="text-center">{{ $admins->perPage() * ($admins->currentPage() - 1) + $count }}</td>
+                    <?php $count++; ?>
                     <td class="text-center">{{ $a->kode_user }}</td>
-                    <td>{{ $a->fullname }}</td>
+                    <td colspan="3">{{ $a->fullname }}</td>
                     @if ($a->id == Auth::user()->id)
-                        <td>{{ $a->username }} <i class="text-muted">(Anda)</i></td>
+                        <td colspan="2">{{ $a->username }} <i class="text-muted">(Anda)</i></td>
                     @else
-                        <td>{{ $a->username }}</td>
+                        <td colspan="2">{{ $a->username }}</td>
                     @endif
                     @if (isset($a->terakhir_login))
-                        <td class="text-center">{{ $a->terakhir_login }}</td>
+                        <td class="text-center" colspan="2">{{ $a->terakhir_login }}</td>
                     @else
-                        <td class="text-center text-muted">-- Tidak Diketahui --</td>
+                        <td class="text-center text-muted" colspan="2">-- Tidak Diketahui --</td>
                     @endif
-                    <td class="text-center">
+                    <td class="text-center" colspan="2">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#updateAdmin{{ $a->id }}">
@@ -184,4 +186,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="pagination justify-content-center mt-2">
+        {{ $admins->links('pagination::bootstrap-4') }}
+    </div>
 @endsection

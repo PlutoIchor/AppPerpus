@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\BukuController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IdentitasController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PenerbitController;
 use App\Http\Controllers\PesanController;
@@ -26,6 +29,10 @@ Route::get('/', function () {
 
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
+Route::get('/inbox', [PesanController::class, 'yourInbox'])->name('inbox');
+Route::get('/pesanTerkirim', [PesanController::class, 'yourMessages'])->name('pesan.terkirim');
+Route::get('/pesan/{id_pesan}', [PesanController::class, 'readMessage']);
+Route::post('/create_pesan', [PesanController::class, 'createPesan'])->name('create.pesan');
 
 Route::prefix('user')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'user'])->name('user.dashboard');
@@ -38,10 +45,6 @@ Route::prefix('user')->group(function () {
     Route::post('/create_pengembalian/{id_peminjaman}', [PeminjamanController::class, 'createPengembalian']);
     Route::get('/riwayat_pengembalian', [PeminjamanController::class, 'viewPengembalian'])->name('user.riwayat.pengembalian');
 
-    Route::get('/inbox', [PesanController::class, 'yourInbox'])->name('user.inbox');
-    Route::get('/pesanTerkirim', [PesanController::class, 'yourMessages'])->name('user.pesan.terkirim');
-    Route::get('/pesan/{id_pesan}', [PesanController::class, 'readMessage']);
-
     Route::get('/profil', function () {
         return view('user.profil');
     })->name('user.profil');
@@ -49,10 +52,11 @@ Route::prefix('user')->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
-    
+
     Route::get('/anggota', [UserController::class, 'anggota'])->name('admin.anggota');
     Route::post('/create_anggota', [UserController::class, 'createAnggota'])->name('admin.create.anggota');
     Route::post('/update_anggota/{id_anggota}', [UserController::class, 'updateAnggota']);
+    Route::post('/update_profil', [UserController::class, 'updateProfil'])->name('user.update.profil');
     Route::delete('/delete_anggota/{id_anggota}', [UserController::class, 'deleteAnggota']);
 
     Route::get('/admin', [UserController::class, 'admin'])->name('admin.admin');
@@ -65,6 +69,20 @@ Route::prefix('admin')->group(function () {
     Route::post('/update_penerbit/{id_penerbit}', [PenerbitController::class, 'updatePenerbit']);
     Route::delete('/delete_penerbit/{id_penerbit}', [PenerbitController::class, 'deletePenerbit']);
 
+    Route::get('/peminjaman', [PeminjamanController::class, 'laporanPeminjaman'])->name('admin.peminjaman');
+
+    Route::get('/buku', [BukuController::class, 'viewBuku'])->name('admin.buku');
+    Route::post('/create_buku', [BukuController::class, 'createBuku'])->name('admin.create.buku');
+    Route::post('/update_buku/{id_buku}', [BukuController::class, 'updateBuku']);
+    Route::delete('/delete_buku/{id_buku}', [BukuController::class, 'deleteBuku']);
+
+    Route::get('/kategori', [KategoriController::class, 'viewKategori'])->name('admin.kategori'); 
+    Route::post('/create_kategori', [KategoriController::class, 'createKategori'])->name('admin.create.kategori'); 
+    Route::post('/update_kategori/{id_kategori}', [KategoriController::class, 'updateKategori']); 
+    Route::delete('/delete_kategori/{id_kategori}', [KategoriController::class, 'deleteKategori']); 
+
+    Route::get('/identitas', [IdentitasController::class, 'viewIdentitas'])->name('admin.identitas'); 
+    Route::post('/update_identitas', [IdentitasController::class, 'updateIdentitas'])->name('admin.update.identitas'); 
 });
 
 Auth::routes();

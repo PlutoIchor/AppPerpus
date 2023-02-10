@@ -81,28 +81,30 @@
             </div>
         </div>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="table-layout: fixed">
         <thead class="thead-dark">
             <tr>
-                <th scope="col" class="text-center">No</th>
-                <th scope="col" class="text-center">Kode User</th>
-                <th scope="col" class="text-center">NIS</th>
-                <th scope="col" class="text-center">Nama Lengkap</th>
-                <th scope="col" class="text-center">Username</th>
-                <th scope="col" class="text-center">Kelas</th>
-                <th scope="col" class="text-center">Aksi</th>
+                <th scope="col" class="text-center align-middle">No</th>
+                <th scope="col" class="text-center align-middle">Kode User</th>
+                <th scope="col" class="text-center align-middle">NIS</th>
+                <th scope="col" class="text-center align-middle" colspan="3">Nama Lengkap</th>
+                <th scope="col" class="text-center align-middle" colspan="2">Username</th>
+                <th scope="col" class="text-center align-middle">Kelas</th>
+                <th scope="col" class="text-center align-middle" colspan="2">Aksi</th>
             </tr>
         </thead>
         <tbody>
+            <?php $count = 1; ?>
             @foreach ($anggotas as $a)
                 <tr>
-                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td class="text-center">{{ $anggotas->perPage() * ($anggotas->currentPage() - 1) + $count }}</td>
+                    <?php $count++; ?>
                     <td class="text-center">{{ $a->kode_user }}</td>
                     <td class="text-center">{{ $a->nis }}</td>
-                    <td>{{ $a->fullname }}</td>
-                    <td>{{ $a->username }}</td>
+                    <td colspan="3">{{ $a->fullname }}</td>
+                    <td colspan="2">{{ $a->username }}</td>
                     <td class="text-center">{{ $a->kelas }}</td>
-                    <td class="text-center">
+                    <td class="text-center" colspan="2">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#updateAnggota{{ $a->id }}">
@@ -115,7 +117,8 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Update Anggota {{ $a->username }}</h5>
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Update Anggota
+                                            {{ $a->username }}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -206,4 +209,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="pagination justify-content-center mt-2">
+        {{ $anggotas->links('pagination::bootstrap-4') }}
+    </div>
 @endsection

@@ -130,7 +130,8 @@ class DataSeeder extends Seeder
             'nama_app' => 'Perpus SMKN 10 Jakarta',
             'email_app' => 'perpus10@gmail.com',
             'nomor_hp' => '081563832997',
-            'alamat' => 'Cawang, Jakarta Timur'
+            'alamat' => 'Cawang, Jakarta Timur',
+            'foto' => 'library.jpg'
         ]);
 
         Pemberitahuan::create([

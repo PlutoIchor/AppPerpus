@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Identitas;
+use App\Models\Kategori;
 use App\Models\Peminjaman;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,13 +22,16 @@ class DashboardController extends Controller
         $anggotas = User::where('role', 'user')->count();
         $peminjamans = Peminjaman::where('tanggal_pengembalian', null)->count();
         $pengembalians = Peminjaman::where('tanggal_pengembalian', today())->count();
-        return view('admin.dashboard', compact('bukus', 'anggotas', 'peminjamans', 'pengembalians'));
+        $foto = Identitas::first()->foto;
+        return view('admin.dashboard', compact('bukus', 'anggotas', 'peminjamans', 'pengembalians', 'foto'));
     }
 
     public function user()
     {
-        $bukus = Buku::get();
-        return view('user.dashboard', compact('bukus'));
+        $kategoris = Kategori::get();
+        $kategoris = $kategoris->sortByDesc('bukus');
+
+        return view('user.dashboard', compact('kategoris'));
     }
 
     /**

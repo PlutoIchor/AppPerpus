@@ -12,11 +12,38 @@ class IdentitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function viewIdentitas()
     {
-        //
+        $identitas = Identitas::first();
+        return view('admin.identitas', compact('identitas'));
     }
 
+    public function updateIdentitas(Request $request)
+    {
+        $identitas = Identitas::first();
+        if ($request->foto == null) {
+            $identitas->update([
+                'nama_app' => $request->nama_app,
+                'email_app' => $request->email_app,
+                'nomor_hp' => $request->nomor_hp,
+                'alamat' => $request->alamat,
+            ]);
+
+            return redirect()->back()->with('successAdd', 'Berhasil mengubah identitas aplikasi');
+        } else {
+            $imageName = time() . '.' . $request->foto->extension();
+            $request->foto->move(public_path('img'), $imageName);
+            $identitas->update([
+                'nama_app' => $request->nama_app,
+                'email_app' => $request->email_app,
+                'nomor_hp' => $request->nomor_hp,
+                'alamat' => $request->alamat,
+                'foto' => $imageName,
+            ]);
+
+            return redirect()->back()->with('successAdd', 'Berhasil mengubah identitas aplikasi');
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

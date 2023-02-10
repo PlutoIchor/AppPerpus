@@ -9,10 +9,11 @@ class Pesan extends Model
 {
     use HasFactory;
     protected $fillable= [
-        'nama_app',
-        'alamat_app',
-        'email_app',
-        'nomor_hp'
+        'id_penerima',
+        'id_pengirim',
+        'judul_pesan',
+        'isi_pesan',
+        'tanggal_kirim'
     ];
 
     public function penerima()

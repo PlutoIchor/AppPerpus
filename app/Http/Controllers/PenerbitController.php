@@ -14,7 +14,7 @@ class PenerbitController extends Controller
      */
     public function viewPenerbit()
     {
-        $penerbits = Penerbit::get();
+        $penerbits = Penerbit::paginate(5)->withQueryString();
         return view('admin.penerbit', compact('penerbits'));
     }
 

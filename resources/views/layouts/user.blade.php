@@ -50,7 +50,7 @@
                         href="{{ route('user.riwayat.pengembalian') }}" class="ml-0.5">Pengembalian</a>
                 </li>
                 <li class="nav-type">PESAN</li>
-                <li class="nav-con"><i class="fa-solid fa-inbox"></i><a href="{{ route('user.inbox') }}"
+                <li class="nav-con"><i class="fa-solid fa-inbox"></i><a href="{{ route('inbox') }}"
                         class="ml-0.5">Inbox
                         {{-- Kalau user tidak ada pesan, tidak ada pop-up inbox --}}
                         @if (Auth::user()->pesan_diterima->where('status', '=', 'terkirim')->count() == 0)
@@ -63,8 +63,8 @@
                 </li>
                 @endif
                 </li>
-                <li class="nav-con"><i class="fa-solid fa-message"></i><a href="{{ route('user.pesan.terkirim') }}"
-                        class="ml-0.5">Kirim Pesan</a>
+                <li class="nav-con"><i class="fa-solid fa-message"></i><a href="{{ route('pesan.terkirim') }}"
+                        class="ml-0.5">Pesan Terkirim</a>
                 </li>
                 <li class="nav-type">LAINNYA</li>
                 <li class="nav-con"><i class="fa-solid fa-id-card-clip"></i><a href="{{ route('user.profil') }}"
