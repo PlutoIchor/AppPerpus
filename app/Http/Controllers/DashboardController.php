@@ -28,10 +28,12 @@ class DashboardController extends Controller
 
     public function user()
     {
+        $top = Buku::get();
+        $top = $top->sortByDesc('peminjamans')->take(3);
         $kategoris = Kategori::get();
         $kategoris = $kategoris->sortByDesc('bukus');
 
-        return view('user.dashboard', compact('kategoris'));
+        return view('user.dashboard', compact('kategoris', 'top'));
     }
 
     /**

@@ -22,12 +22,16 @@
             <div class="col-sm-9">
                 <select class="form-control" id="exampleFormControlSelect1" name="id_buku" required>
                     <option value="" disabled selected hidden>Pilih Opsi</option>
-                    @foreach ($bukus as $buku)
-                        @if (isset($id_buku) && $buku->id == $id_buku)
-                            <option value="{{ $buku->id }}" selected>{{ $buku->judul_buku }}</option>
-                        @else
-                            <option value="{{ $buku->id }}">{{ $buku->judul_buku }}</option>
-                        @endif
+                    @foreach ($kategoris as $k)
+                        <optgroup label="{{ $k->nama_kategori }}">
+                            @foreach ($k->bukus->sortBy('judul_buku') as $buku)
+                                @if (isset($id_buku) && $buku->id == $id_buku)
+                                    <option value="{{ $buku->id }}" selected>{{ $buku->judul_buku }}</option>
+                                @else
+                                    <option value="{{ $buku->id }}">{{ $buku->judul_buku }}</option>
+                                @endif
+                            @endforeach
+                        </optgroup>
                     @endforeach
                 </select>
             </div>
@@ -35,11 +39,20 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Kondisi Buku Saat Dipinjam</label>
             <div class="col-sm-9">
-                <select class="form-control" id="exampleFormControlSelect1" name="kondisi_buku_saat_dipinjam" required>
-                    <option value="" disabled selected hidden>Pilih Opsi</option>
-                    <option value="Baik">Baik</option>
-                    <option value="Rusak">Rusak</option>
-                </select>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="kondisi_buku_saat_dipinjam"
+                        id="kondisi_buku_saat_dipinjam1" value="Baik" checked>
+                    <label class="form-check-label" for="kondisi_buku_saat_dipinjam1">
+                        Baik
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="kondisi_buku_saat_dipinjam"
+                        id="kondisi_buku_saat_dipinjam2" value="Rusak">
+                    <label class="form-check-label" for="kondisi_buku_saat_dipinjam2">
+                        Rusak
+                    </label>
+                </div>
             </div>
         </div>
         <button type="submit" class="btn btn-secondary mt-2 w-100">PINJAM</button>

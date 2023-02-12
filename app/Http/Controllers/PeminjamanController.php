@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Kategori;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,11 +17,12 @@ class PeminjamanController extends Controller
      */
     public function formPeminjaman($id_buku = null)
     {
-        $bukus = Buku::get()->all();
+        $kategoris = Kategori::get();
+        $kategoris = $kategoris->sortByDesc('bukus');
         if (isset($id_buku)) {
-            return view('user.form_peminjaman', compact('bukus','id_buku'));
+            return view('user.form_peminjaman', compact('kategoris','id_buku'));
         }
-        return view('user.form_peminjaman', compact('bukus'));
+        return view('user.form_peminjaman', compact('kategoris'));
     }
 
     public function viewPeminjaman()

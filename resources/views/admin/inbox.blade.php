@@ -9,7 +9,25 @@
         </ol>
     </nav>
     <hr>
-    <div class="mt-4">
+    {{-- Search Bar --}}
+    <form action="{{ route('searchInbox') }}" style="width:70%;" method="POST">
+        @csrf
+        <div class="input-group mb-3">
+            <input type="text" class="form-control " placeholder="Cari Pesan" name="search" value="{{ request('search') }}">
+            <div class="input-group-append">
+                <button class="btn btn-secondary" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    @if ($inbox->count() == 0)
+        <div class="d-flex w-100 h-100 flex-column align-items-center justify-content-center">
+            <h1><i class="fa-solid fa-comment-slash"></i></h1>
+            <h3>Anda tidak memiliki pesan</h3>
+        </div>
+    @endif
+    <div class="mt-3">
         @foreach ($inbox as $pesan)
             <div class="card mb-2">
                 @if ($pesan->status == 'terkirim')

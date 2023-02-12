@@ -60,6 +60,12 @@
             </div>
         </div>
     </div>
+    @if ($messages->count() == 0)
+        <div class="d-flex w-100 h-100 flex-column align-items-center justify-content-center">
+            <h1><i class="fa-solid fa-comment-slash"></i></h1>
+            <h3>Anda belum pernah mengirim pesan</h3>
+        </div>
+    @endif
     <div class="mt-3">
         @foreach ($messages as $message)
             <div class="card mb-2">

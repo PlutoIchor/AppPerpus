@@ -30,6 +30,8 @@ Route::get('/', function () {
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('/inbox', [PesanController::class, 'yourInbox'])->name('inbox');
+Route::post('/searchInbox', [PesanController::class, 'searchInbox'])->name('searchInbox');
+Route::post('/searchMessage', [PesanController::class, 'searchMessage'])->name('searchMessage');
 Route::get('/pesanTerkirim', [PesanController::class, 'yourMessages'])->name('pesan.terkirim');
 Route::get('/pesan/{id_pesan}', [PesanController::class, 'readMessage']);
 Route::post('/create_pesan', [PesanController::class, 'createPesan'])->name('create.pesan');

@@ -5,6 +5,99 @@
     <div class="alert alert-secondary" role="alert">
         Selamat Datang , {{ Auth::user()->fullname }}!
     </div>
+    <hr>
+    <nav class="navbar navbar-light bg-light">
+        <h3><b>Populer</b></h3>
+    </nav>
+    <div class="d-flex flex-column mt-2">
+        @foreach ($top as $b)
+            @if ($loop->index != 1)
+                <div class="card mt-2">
+                    <div class="card-body p-0 d-flex flex-row">
+                        <div class="d-flex align-items-center justify-content-center px-4 border bg-danger text-white">
+                            <h1>{{ $loop->index + 1 }}</h1>
+                        </div>
+                        <div class="d-flex w-100 flex-column align-items-center justify-content-center text-center">
+                            <h2><b>{{ $b->judul_buku }}</b></h2>
+                            <h5 class="text-muted">Oleh : {{ $b->pengarang }}, {{ $b->tahun_terbit }}</h5>
+                            <div class="row">
+                                <h5 class="mr-2"><span class="badge badge-info">{{ $b->kategori->nama_kategori }}</span></h3></h5>
+                                <h5 class="mr-2"><span class="badge badge-info">{{ $b->penerbit->nama_penerbit }}</span></h3></h5>
+                                <h5><span class="badge badge-info"><i class="fa-solid fa-bookmark"></i> {{ $b->peminjamans->count() }}</span></h3></h5>
+                            </div>
+                            <h4 class="w-50"><a href="{{ url('user/form_peminjaman/' . $b->id) }}" class="badge badge-warning w-100">Pinjam</a></h4>
+                        </div>
+                        <img src="{{ url('/img' . '/' . $b->foto) }}" style="height: 150px; object-fit: cover;"
+                            class="card-img border" alt="{{ $b->judul_buku }}" data-toggle="modal"
+                            data-target="#foto{{ $b->id }}" />
+                        <!-- Modal -->
+                        <div class="modal fade text-left " id="foto{{ $b->id }}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <center>
+                                            <img src="{{ url('/img' . '/' . $b->foto) }}"
+                                                class="rounded border border-4 p-1"
+                                                style="height: 450px;object-fit: cover;">
+                                            <h3 class="mt-2"><b>{{ $b->judul_buku }}</b></h3>
+                                            <p>By : <a
+                                                    href="https://www.google.com/search?q={{ str_replace(' ', '_', $b->pengarang) }}"
+                                                    target="_blank">{{ $b->pengarang }}</a>, {{ $b->tahun_terbit }}</p>
+                                            <p>Stok : <span class="text-info">{{ $b->j_buku_baik }} | <span
+                                                        class="text-muted">{{ $b->j_buku_rusak }}</span></span></p>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="card mt-2">
+                    <div class="card-body p-0 d-flex flex-row">
+                        <img src="{{ url('/img' . '/' . $b->foto) }}" style="height: 150px; object-fit: cover;"
+                            class="card-img border" alt="{{ $b->judul_buku }}" data-toggle="modal"
+                            data-target="#foto{{ $b->id }}" />
+                        <!-- Modal -->
+                        <div class="modal fade text-left " id="foto{{ $b->id }}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <center>
+                                            <img src="{{ url('/img' . '/' . $b->foto) }}"
+                                                class="rounded border border-4 p-1"
+                                                style="height: 450px;object-fit: cover;">
+                                            <h3 class="mt-2"><b>{{ $b->judul_buku }}</b></h3>
+                                            <p>By : <a
+                                                    href="https://www.google.com/search?q={{ str_replace(' ', '_', $b->pengarang) }}"
+                                                    target="_blank">{{ $b->pengarang }}</a>, {{ $b->tahun_terbit }}</p>
+                                            <p>Stok : <span class="text-info">{{ $b->j_buku_baik }} | <span
+                                                        class="text-muted">{{ $b->j_buku_rusak }}</span></span></p>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex w-100 flex-column align-items-center justify-content-center text-center">
+                            <h2><b>{{ $b->judul_buku }}</b></h2>
+                            <h5 class="text-muted">Oleh : {{ $b->pengarang }}, {{ $b->tahun_terbit }}</h5>
+                            <div class="row">
+                                <h5 class="mr-2"><span class="badge badge-info">{{ $b->kategori->nama_kategori }}</span></h3></h5>
+                                <h5 class="mr-2"><span class="badge badge-info">{{ $b->penerbit->nama_penerbit }}</span></h3></h5>
+                                <h5><span class="badge badge-info"><i class="fa-solid fa-bookmark"></i> {{ $b->peminjamans->count() }}</span></h3></h5>
+                            </div>
+                            <h4 class="w-50"><a href="{{ url('user/form_peminjaman/' . $b->id) }}" class="badge badge-warning w-100">Pinjam</a></h4>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center px-4 border bg-danger text-white">
+                            <h1>{{ $loop->index + 1 }}</h1>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endforeach
+    </div>
     @foreach ($kategoris as $k)
         @if ($k->bukus->count() > 0)
             <hr>
@@ -26,16 +119,16 @@
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Foto {{ $buku->judul_buku }}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
                             <div class="modal-body">
                                 <center>
-                                    <img src="{{ url('/img' . '/' . $buku->foto) }}"
+                                    <img src="{{ url('/img' . '/' . $buku->foto) }}" class="rounded border border-4 p-1"
                                         style="height: 450px;object-fit: cover;">
+                                    <h3 class="mt-2"><b>{{ $buku->judul_buku }}</b></h3>
+                                    <p>By : <a
+                                            href="https://www.google.com/search?q={{ str_replace(' ', '_', $buku->pengarang) }}"
+                                            target="_blank">{{ $buku->pengarang }}</a>, {{ $buku->tahun_terbit }}</p>
+                                    <p>Stok : <span class="text-info">{{ $buku->j_buku_baik }} | <span
+                                                class="text-muted">{{ $buku->j_buku_rusak }}</span></span></p>
                                 </center>
                             </div>
                         </div>

@@ -69,6 +69,34 @@ class PesanController extends Controller
 
         return redirect()->route('pesan.terkirim')->with('successAdd', "Berhasil mengirim pesan ke '$penerima->username'");
     }
+
+    public function searchInbox(Request $request)
+    {
+ 		$inbox = Pesan::where('id_penerima', Auth::user()->id)->latest()
+		->where('judul_pesan','like',"%".$request->search."%")
+		->orWhere('isi_pesan', 'like', "%".$request->search."%")->paginate(3)->withQueryString();
+
+        if(Auth::user()->role == 'user')
+        {
+            return view('user.inbox', compact('inbox'));
+
+        }
+        return view('admin.inbox', compact('inbox'));
+    }
+
+    public function searchMessage(Request $request)
+    {
+ 		$messages = Pesan::where('id_pengirim', Auth::user()->id)->latest()
+		->where('judul_pesan','like',"%".$request->search."%")
+		->orWhere('isi_pesan', 'like', "%".$request->search."%")->paginate(3)->withQueryString();
+
+        if(Auth::user()->role == 'user')
+        {
+            return view('user.kirim_pesan', compact('messages'));
+
+        }
+        return view('admin.kirim_pesan', compact('messages'));
+    }
     /**
      * Show the form for creating a new resource.
      *
