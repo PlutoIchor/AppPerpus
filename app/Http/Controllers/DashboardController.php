@@ -22,8 +22,8 @@ class DashboardController extends Controller
         $anggotas = User::where('role', 'user')->count();
         $peminjamans = Peminjaman::where('tanggal_pengembalian', null)->count();
         $pengembalians = Peminjaman::where('tanggal_pengembalian', today())->count();
-        $foto = Identitas::first()->foto;
-        return view('admin.dashboard', compact('bukus', 'anggotas', 'peminjamans', 'pengembalians', 'foto'));
+        $id = Identitas::first();
+        return view('admin.dashboard', compact('bukus', 'anggotas', 'peminjamans', 'pengembalians', 'id'));
     }
 
     public function user()

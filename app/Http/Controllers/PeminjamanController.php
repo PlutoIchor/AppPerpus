@@ -33,7 +33,7 @@ class PeminjamanController extends Controller
 
     public function laporanPeminjaman()
     {
-        $peminjamans = Peminjaman::paginate(5)->withQueryString();
+        $peminjamans = Peminjaman::paginate(7)->withQueryString();
         return view('admin.peminjaman', compact('peminjamans'));
     }
     /**

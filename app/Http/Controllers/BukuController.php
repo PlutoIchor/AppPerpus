@@ -22,9 +22,19 @@ class BukuController extends Controller
         return view('admin.buku', compact('bukus', 'penerbits', 'kategoris'));
     }
 
+    public function searchBuku(Request $request)
+    {
+        $bukus = Buku::where('judul_buku', 'like', "%" . $request->search . "%")
+            ->orWhere('pengarang', 'like', "%" . $request->search . "%")
+            ->paginate(5)->withQueryString();
+        $kategoris = Kategori::get();
+        $penerbits = Penerbit::get();
+        return view('admin.buku', compact('bukus', 'penerbits', 'kategoris'));
+    }
+
     public function createBuku(Request $request)
     {
-        $imageName = time().'.'.$request->foto->extension();
+        $imageName = time() . '.' . $request->foto->extension();
         $request->foto->move(public_path('img'), $imageName);
 
         $buku = Buku::create([
@@ -44,7 +54,7 @@ class BukuController extends Controller
     {
         $buku = Buku::find($id_buku);
         $nama_buku = $buku->judul_buku;
-        $imageName = time().'.'.$request->foto->extension();
+        $imageName = time() . '.' . $request->foto->extension();
         $request->foto->move(public_path('img'), $imageName);
 
         $buku = Buku::create([

@@ -18,6 +18,14 @@ class PenerbitController extends Controller
         return view('admin.penerbit', compact('penerbits'));
     }
 
+    public function searchPenerbit(Request $request)
+    {
+        $penerbits = Penerbit::where('kode_penerbit', 'like', "%" . $request->search . "%")
+            ->orWhere('nama_penerbit', 'like', "%" . $request->search . "%")
+            ->paginate(5)->withQueryString();
+        return view('admin.penerbit', compact('penerbits'));
+    }
+
     public function createPenerbit(Request $request)
     {
         $penerbit = Penerbit::create([

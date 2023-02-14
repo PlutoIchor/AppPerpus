@@ -18,6 +18,14 @@ class KategoriController extends Controller
         return view('admin.kategori', compact('kategoris'));
     }
 
+    public function searchKategori(Request $request)
+    {
+        $kategoris = Kategori::where('kode_kategori', 'like', "%" . $request->search . "%")
+            ->orWhere('nama_kategori', 'like', "%" . $request->search . "%")
+            ->paginate(5)->withQueryString();
+        return view('admin.kategori', compact('kategoris'));
+    }
+
     public function createKategori(Request $request)
     {
         $kategori = Kategori::create($request->all());

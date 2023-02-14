@@ -34,7 +34,9 @@
     </div>
     <div class="h-auto">
         <center class="mt-5">
-            <img src="/img/{{ $foto }}" class="rounded img-fluid" style="width: 300px;" />
+            <img src="/img/{{ $id->foto }}" class="rounded img-fluid" style="width: 300px;" />
+            <h4 class="mt-2">{{ $id->nama_app }}</h4>
+            <h5>{{ $id->alamat }}</h5>
         </center>
     </div>
 @endsection

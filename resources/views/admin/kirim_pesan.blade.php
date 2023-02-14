@@ -9,10 +9,25 @@
         </ol>
     </nav>
     <hr>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kirimPesan">
-        Kirim Pesan
-    </button>
+    <div class="d-flex flex-row">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kirimPesan">
+            Kirim Pesan
+        </button>
+        {{-- Search Bar --}}
+        <form action="{{ route('searchMessage') }}" class="ml-4" style="width:70%;" method="POST">
+            @csrf
+            <div class="input-group">
+                <input type="text" class="form-control " placeholder="Cari Pesan" name="search"
+                    value="{{ request('search') }}">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     @if (\Session::has('successAdd'))
         <div class="alert alert-success d-flex align-items-center mt-3">

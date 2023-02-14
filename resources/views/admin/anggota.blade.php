@@ -14,11 +14,25 @@
         </div>
     @endif
     <hr>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-info my-2" data-toggle="modal" data-target="#tambahAnggota">
-        Tambah Anggota
-    </button>
-
+    <div class="d-flex flex-row">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info my-2" data-toggle="modal" data-target="#tambahAnggota">
+            Tambah Anggota
+        </button>
+        {{-- Search Bar --}}
+        <form action="{{ route('admin.search.anggota') }}" class="my-2 ml-4" style="width:70%;" method="POST">
+            @csrf
+            <div class="input-group">
+                <input type="text" class="form-control " placeholder="Cari Anggota" name="search"
+                    value="{{ request('search') }}">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="tambahAnggota" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
@@ -85,9 +99,10 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col" class="text-center align-middle">No</th>
+                <th scope="col" class="text-center align-middle" colspan="2">Foto</th>
                 <th scope="col" class="text-center align-middle">Kode User</th>
                 <th scope="col" class="text-center align-middle">NIS</th>
-                <th scope="col" class="text-center align-middle" colspan="3">Nama Lengkap</th>
+                <th scope="col" class="text-center align-middle" colspan="2">Nama Lengkap</th>
                 <th scope="col" class="text-center align-middle" colspan="2">Username</th>
                 <th scope="col" class="text-center align-middle">Kelas</th>
                 <th scope="col" class="text-center align-middle" colspan="2">Aksi</th>
@@ -99,9 +114,16 @@
                 <tr>
                     <td class="text-center">{{ $anggotas->perPage() * ($anggotas->currentPage() - 1) + $count }}</td>
                     <?php $count++; ?>
+                    @if (isset($a->foto))
+                        <td class="text-center" colspan="2"><img src="/img/{{ $a->foto }}"
+                                class="rounded-circle img-fluid" /></td>
+                    @else
+                        <td class="text-center" colspan="2"><img src="/img/default.jpg"
+                                class="rounded-circle img-fluid" /></td>
+                    @endif
                     <td class="text-center">{{ $a->kode_user }}</td>
                     <td class="text-center">{{ $a->nis }}</td>
-                    <td colspan="3">{{ $a->fullname }}</td>
+                    <td colspan="2">{{ $a->fullname }}</td>
                     <td colspan="2">{{ $a->username }}</td>
                     <td class="text-center">{{ $a->kelas }}</td>
                     <td class="text-center" colspan="2">

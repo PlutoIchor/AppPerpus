@@ -14,10 +14,25 @@
         </div>
     @endif
     <hr>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-info my-2" data-toggle="modal" data-target="#tambahAdmin">
-        Tambah Admin
-    </button>
+    <div class="d-flex flex-row">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info my-2" data-toggle="modal" data-target="#tambahAdmin">
+            Tambah Admin
+        </button>
+        {{-- Search Bar --}}
+        <form action="{{ route('admin.search.admin') }}" class="my-2 ml-4" style="width:70%;" method="POST">
+            @csrf
+            <div class="input-group">
+                <input type="text" class="form-control " placeholder="Cari Admin" name="search"
+                    value="{{ request('search') }}">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="tambahAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -104,8 +119,8 @@
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade text-left" id="updateAdmin{{ $a->id }}" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal fade text-left" id="updateAdmin{{ $a->id }}" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">

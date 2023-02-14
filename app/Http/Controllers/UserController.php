@@ -20,6 +20,30 @@ class UserController extends Controller
         return view('admin.anggota', compact('anggotas'));
     }
 
+    public function searchAnggota(Request $request)
+    {
+        $anggotas = User::where('kode_user', 'like', "%" . $request->search . "%")
+            ->orWhere('nis', 'like', "%" . $request->search . "%")
+            ->orWhere('fullname', 'like', "%" . $request->search . "%")
+            ->orWhere('username', 'like', "%" . $request->search . "%")
+            ->orWhere('kelas', 'like', "%" . $request->search . "%")
+            ->where('role', 'user')
+            ->paginate(5)->withQueryString();
+        return view('admin.anggota', compact('anggotas'));
+    }
+
+    public function searchAdmin(Request $request)
+    {
+        $admins = User::where('kode_user', 'like', "%" . $request->search . "%")
+            ->orWhere('nis', 'like', "%" . $request->search . "%")
+            ->orWhere('fullname', 'like', "%" . $request->search . "%")
+            ->orWhere('username', 'like', "%" . $request->search . "%")
+            ->orWhere('kelas', 'like', "%" . $request->search . "%")
+            ->where('role', 'user')
+            ->paginate(5)->withQueryString();
+        return view('admin.admin', compact('admins'));
+    }
+
     public function admin()
     {
         $admins = User::where('role', 'admin')->paginate(5)->withQueryString();

@@ -14,11 +14,25 @@
         </div>
     @endif
     <hr>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-info my-2" data-toggle="modal" data-target="#tambahBuku">
-        Tambah Buku
-    </button>
-
+    <div class="d-flex flex-row">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info my-2" data-toggle="modal" data-target="#tambahBuku">
+            Tambah Buku
+        </button>
+        {{-- Search Bar --}}
+        <form action="{{ route('admin.search.buku') }}" class="my-2 ml-4" style="width:70%;" method="POST">
+            @csrf
+            <div class="input-group">
+                <input type="text" class="form-control " placeholder="Cari Anggota" name="search"
+                    value="{{ request('search') }}">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="tambahBuku" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
@@ -254,7 +268,8 @@
                                                     Baik</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="staticEmail"
-                                                        placeholder="Jumlah Buku Baik" name="j_buku_baik" value="{{ $b->j_buku_baik }}" required>
+                                                        placeholder="Jumlah Buku Baik" name="j_buku_baik"
+                                                        value="{{ $b->j_buku_baik }}" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -262,7 +277,8 @@
                                                     Rusak</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="staticEmail"
-                                                        placeholder="Jumlah Buku Buruk" name="j_buku_rusak" value="{{ $b->j_buku_rusak }}" required>
+                                                        placeholder="Jumlah Buku Buruk" name="j_buku_rusak"
+                                                        value="{{ $b->j_buku_rusak }}" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -270,7 +286,8 @@
                                                     Terbit</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="staticEmail"
-                                                        placeholder="Tahun Terbit" name="tahun_terbit" value="{{ $b->tahun_terbit }}" required>
+                                                        placeholder="Tahun Terbit" name="tahun_terbit"
+                                                        value="{{ $b->tahun_terbit }}" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

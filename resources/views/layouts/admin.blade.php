@@ -26,7 +26,7 @@
         integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}"">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 </head>
 
 <body>
@@ -77,7 +77,7 @@
                         class="ml-0.5">Pesan Terkirim</a>
                 </li>
                 <li class="nav-type">LAINNYA</li>
-                <li class="nav-con"><i class="fa-solid fa-file-lines"></i><a href="" class="ml-0.5">Laporan
+                <li class="nav-con"><i class="fa-solid fa-file-lines"></i><a href="{{ route('admin.laporan') }}" class="ml-0.5">Laporan
                         Perpustakaan</a>
                 </li>
                 <li class="nav-con"><i class="fa-solid fa-tablet-screen-button"></i></i><a href="{{ route('admin.identitas') }}"

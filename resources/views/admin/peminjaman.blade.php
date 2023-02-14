@@ -19,7 +19,7 @@
             <tr>
                 <th scope="col" class="text-center align-middle">No</th>
                 <th scope="col" class="text-center align-middle" colspan="2">Nama Anggota</th>
-                <th scope="col" class="text-center align-middle" colspan="3">Judul Buku</th>
+                <th scope="col" class="text-center align-middle" colspan="2">Judul Buku</th>
                 <th scope="col" class="text-center align-middle" colspan="2">Tanggal Peminjaman</th>
                 <th scope="col" class="text-center align-middle" colspan="2">Tanggal Pengembalian</th>
                 <th scope="col" class="text-center align-middle">Kondisi Buku Saat Dipinjam</th>
@@ -34,7 +34,7 @@
                     <td class="text-center">{{ $peminjamans->perPage() * ($peminjamans->currentPage() - 1) + $count }}</td>
                     <?php $count++; ?>
                     <td colspan="2">{{ $p->user->fullname }}</td>
-                    <td colspan="3">{{ $p->buku->judul_buku }}</td>
+                    <td colspan="2">{{ $p->buku->judul_buku }}</td>
                     <td class="text-center" colspan="2">{{ $p->tanggal_peminjaman }}</td>
                     @if ($p->tanggal_pengembalian == null)
                         <td class="text-center text-muted" colspan="2"><i>- <i class="fa-solid fa-xmark"></i> -</i></td>

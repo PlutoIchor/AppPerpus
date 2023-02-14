@@ -14,10 +14,24 @@
         </div>
     @endif
     <hr>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-info my-2" data-toggle="modal" data-target="#tambahBuku">
-        Tambah Kategori
-    </button>
+    <div class="d-flex flex-row">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info my-2" data-toggle="modal" data-target="#tambahBuku">
+            Tambah Kategori
+        </button>
+        <form action="{{ route('admin.search.kategori') }}" class="my-2 ml-4" style="width:70%;" method="POST">
+            @csrf
+            <div class="input-group">
+                <input type="text" class="form-control " placeholder="Cari Anggota" name="search"
+                    value="{{ request('search') }}">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="tambahBuku" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
