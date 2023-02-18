@@ -31,8 +31,8 @@
 
 <body>
     <div class="left-section">
-        <div class="web-logo d-flex flex-row align-items-center mt-3 mb-3 ml-auto mr-auto">
-            <i class="fa-solid fa-book-open" style="font-size: 35px; color: white;"></i>
+        <div class="web-logo d-flex flex-row align-items-center my-3 mx-auto">
+            <i class="fa-solid fa-book-open" style="font-size: 3vh; color: white;"></i>
             <h3 class="pl-2 m-auto text-light">PERPUS</h3>
         </div>
         <div class="content-nav mt-3" style="color: white">

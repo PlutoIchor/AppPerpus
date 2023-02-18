@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2><b>Laporan Perpustakaan</b></h2>
+    <h2><b>Cetak Laporan Perpustakaan</b></h2>
     <hr>
     <div class="accordion align-items-center" id="accordionExample">
         <div class="card">

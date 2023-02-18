@@ -16,20 +16,17 @@ class PesanController extends Controller
      */
     public function yourInbox()
     {
-        $inbox = Pesan::where('id_penerima','=',Auth::user()->id)->latest()->paginate(3)->withQueryString();
-        if(Auth::user()->role == 'user')
-        {
+        $inbox = Pesan::where('id_penerima', '=', Auth::user()->id)->latest()->paginate(3)->withQueryString();
+        if (Auth::user()->role == 'user') {
             return view('user.inbox', compact('inbox'));
-
         }
         return view('admin.inbox', compact('inbox'));
     }
 
     public function yourMessages()
     {
-        $messages = Pesan::where('id_pengirim','=',Auth::user()->id)->latest()->paginate(3)->withQueryString();
-        if(Auth::user()->role == 'user')
-        {
+        $messages = Pesan::where('id_pengirim', '=', Auth::user()->id)->latest()->paginate(3)->withQueryString();
+        if (Auth::user()->role == 'user') {
             return view('user.kirim_pesan', compact('messages'));
         }
         return view('admin.kirim_pesan', compact('messages'));
@@ -38,24 +35,20 @@ class PesanController extends Controller
     public function readMessage($id_pesan)
     {
         $pesan = Pesan::find($id_pesan);
-        if($pesan->status == 'terkirim' && $pesan->penerima->id == Auth::user()->id)
-        {
+        if ($pesan->status == 'terkirim' && $pesan->penerima->id == Auth::user()->id) {
             $pesan->status = 'terbaca';
             $pesan->save();
         }
-        if(Auth::user()->role == 'user')
-        {
+        if (Auth::user()->role == 'user') {
             return view('user.pesan', compact('pesan'));
-
         }
         return view('admin.pesan', compact('pesan'));
     }
 
     public function createPesan(Request $request)
     {
-        $penerima = User::where('username',$request->username)->first();
-        if(!isset($penerima))
-        {
+        $penerima = User::where('username', $request->username)->first();
+        if (!isset($penerima)) {
             return redirect()->back()->with('fail', 'User tidak ditemukan. Periksa apakah username yang dimasukkan sudah tepat');
         }
         Pesan::create([
@@ -72,28 +65,22 @@ class PesanController extends Controller
 
     public function searchInbox(Request $request)
     {
- 		$inbox = Pesan::where('id_penerima', Auth::user()->id)->latest()
-		->where('judul_pesan','like',"%".$request->search."%")
-		->orWhere('isi_pesan', 'like', "%".$request->search."%")->paginate(3)->withQueryString();
+        $inbox = Pesan::where([['id_penerima', Auth::user()->id], ['judul_pesan', 'like', "%" . $request->search . "%"]])
+            ->orWhere([['id_penerima', Auth::user()->id], ['isi_pesan', 'like', "%" . $request->search . "%"]])->latest()->paginate(3)->withQueryString();
 
-        if(Auth::user()->role == 'user')
-        {
+        if (Auth::user()->role == 'user') {
             return view('user.inbox', compact('inbox'));
-
         }
         return view('admin.inbox', compact('inbox'));
     }
 
     public function searchMessage(Request $request)
     {
- 		$messages = Pesan::where('id_pengirim', Auth::user()->id)->latest()
-		->where('judul_pesan','like',"%".$request->search."%")
-		->orWhere('isi_pesan', 'like', "%".$request->search."%")->paginate(3)->withQueryString();
+        $messages = Pesan::where([['id_pengirim', Auth::user()->id], ['judul_pesan', 'like', "%" . $request->search . "%"]])
+            ->orWhere([['id_pengirim', Auth::user()->id], ['isi_pesan', 'like', "%" . $request->search . "%"]])->latest()->paginate(3)->withQueryString();
 
-        if(Auth::user()->role == 'user')
-        {
+        if (Auth::user()->role == 'user') {
             return view('user.kirim_pesan', compact('messages'));
-
         }
         return view('admin.kirim_pesan', compact('messages'));
     }

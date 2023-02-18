@@ -31,11 +31,11 @@ body {
 .left-section {
     display: flex;
     flex-direction: column;
-    flex: 3;
     height: 100%;
     width: 15%;
     position: fixed;
     background-color: #032a3b;
+    z-index : 1;
 }
 
 .nav-type,
@@ -72,7 +72,7 @@ body {
     flex-direction: column;
     flex: 17;
     height: 100%;
-    margin-left : 15%
+    margin-left : 15%;
 }
 
 .logout p {
@@ -109,4 +109,11 @@ body {
 .logout_button:hover ~ .logout_button a,
 .logout_button i {
     color: green;
+}
+
+.bukus {
+    width : 105%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
 }
