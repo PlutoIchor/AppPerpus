@@ -1,64 +1,117 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<h1 align="center">E-Perpus Requirements 🗿🍷</h1>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Install Laravel 8
 
-## About Laravel
+<p>composer create-project laravel/laravel:^8.* LSPerpus</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Install Bootstap Auth
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p>composer require laravel/ui:^3.4.6</p>
+<p>php artisan ui bootstrap --auth</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Create Model & Migration
 
-## Learning Laravel
+<p>php artisan make:model Kategori -m</p>
+<p>php artisan make:model Penerbit -m</p>
+<p>php artisan make:model Buku -m</p>
+<p>php artisan make:model Peminjaman -m</p>
+<p>php artisan make:model Pesan -m</p>
+<p>php artisan make:model Pemberitahuan -m</p>
+<p>php artisan make:model Identitas -m</p>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Create Role Middleware
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<p>php artisan make:middleware Role</p>
 
-## Laravel Sponsors
+## Create Seeder
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<p>php artisan make:seeder DataSeeder</P>
 
-### Premium Partners
+## Create Register Controller
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+<p>php artisan make:controller RegisterController</p>
 
-## Contributing
+## Create Global Controller
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<p>php artisan make:controller CreateController</p>
+<p>php artisan make:controller ReadController</p>
+<p>php artisan make:controller UpdateController</p>
+<p>php artisan make:controller DeleteController</p>
+<p>php artisan make:controller SearchController</p>
 
-## Code of Conduct
+## Create Layouts 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<p>layouts.user</p>
+<p>layouts.admin</p>
 
-## Security Vulnerabilities
+## Create User View
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<p>user.dashboard</p>
+<br>
+<p>user.peminjaman.form</p>
+<p>user.peminjaman.riwayat</p>
+<br>
+<p>user.pengembalian.form</p>
+<p>user.pengembalian.riwayat</p>
+<br>
+<p>user.pesan.masuk</p>
+<p>user.pesan.terkirim</p>
+<br>
+<p>user.profile</p>
 
-## License
+## Create Admin View
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<p>admin.dashboard</p>
+<br>
+<p>admin.masterdata.administrator</p>
+<p>admin.masterdata.anggota</p>
+<p>admin.masterdata.peminjaman</p>
+<p>admin.masterdata.penerbit</p>
+<br>
+<p>admin.katalog.buku</p>
+<p>admin.katalog.kategori</p>
+<br>
+<p>admin.laporan.laporan</p>
+<p>admin.laporan.laporan_peminjaman_pdf</p>
+<p>admin.laporan.laporan_pengembalian_pdf</p>
+<p>admin.laporan.laporan_siswa_pdf</p>
+<br>
+<p>admin.excel.peminjaman</p>
+<p>admin.excel.pengembalian</p>
+<p>admin.excel.user</p>
+<br>
+<p>admin.pesan.masuk</p>
+<p>admin.pesan.terkirim</p>
+<br>
+<p>admin.identitas</p>
+
+## PDF Installation
+
+<p>composer require barryvdh/laravel-dompdf</p>
+<br>
+<p>Barryvdh\DomPDF\ServiceProvider::class, => add code to config/app.php inside 'providers'</p>
+<p>'PDF' => Barryvdh\DomPDF\Facade::class, => add code to config/app.php inside 'aliases'</p>
+
+## Excel Instalation
+
+<p>composer require maatwebsite/excel</p>
+<br>
+<p>Maatwebsite\Excel\ExcelServiceProvider::class, => add code to config/app.php inside 'providers'</p>
+<p>'Excel' => Maatwebsite\Excel\Facades\Excel::class, => add code to config/app.php inside 'aliases'</p>
+<br>
+<p>php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider"</p>
+<br>
+<p>php artisan make:export LaporanExport</p>
+<p>php artisan make:export PengembalianExport</p>
+<p>php artisan make:export UserExport</p>
+
+## Create API
+
+<p>php artisan make:controller API/APIBukuController</p>
+<p>php artisan make:controller API/APIIdentitasController</p>
+<p>php artisan make:controller API/APIKategoriController</p>
+<p>php artisan make:controller API/APIPemberitahuanController</p>
+<p>php artisan make:controller API/APIPeminjamanController</p>
+<p>php artisan make:controller API/APIPenerbitController</p>
+<p>php artisan make:controller API/APIPesanController</p>
+<p>php artisan make:controller API/APIUserController</p>
