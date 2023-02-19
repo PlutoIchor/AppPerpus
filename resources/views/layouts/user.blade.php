@@ -70,9 +70,6 @@
                 <li class="nav-con"><i class="fa-solid fa-id-card-clip"></i><a href="{{ route('user.profil') }}"
                         class="ml-0.5">Profil</a>
                 </li>
-                <li class="nav-con"><i class="fa-solid fa-right-from-bracket"></i><a href="{{ route('logout') }}"
-                        class="ml-0.5">Logout</a>
-                </li>
             </ul>
             <hr>
             <div class="logout align-items-center">
@@ -84,6 +81,9 @@
 
             </div>
         </div>
+    </div>
+    <div class="top-bar align-items-center justify-content-end pr-2">
+        <h5 class="m-0 text-white"><i class="fa-solid fa-envelope pr-3"></i> <i class="fa-solid fa-grip-lines-vertical pr-3"></i><a href="{{ route('logout') }}" class="text-white" style="text-decoration: none"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></h5>
     </div>
     <div class="right-section p-4">
         <div class="container mt-4">

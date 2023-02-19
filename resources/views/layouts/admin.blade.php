@@ -46,22 +46,21 @@
                 <li class="nav-con"><i class="fa-solid fa-user-pen"></i></i><a href="{{ route('admin.penerbit') }}"
                         class="ml-0.5">Data Penerbit</a>
                 </li>
-                <li class="nav-con"><i class="fa-solid fa-user-secret"></i><a
-                        href="{{ route('admin.admin') }}" class="ml-0.5">Data Admin</a>
+                <li class="nav-con"><i class="fa-solid fa-user-secret"></i><a href="{{ route('admin.admin') }}"
+                        class="ml-0.5">Data Admin</a>
                 </li>
-                <li class="nav-con"><i class="fa-solid fa-bookmark"></i></i><a
-                        href="{{ route('admin.peminjaman') }}" class="ml-0.5">Data Peminjaman</a>
+                <li class="nav-con"><i class="fa-solid fa-bookmark"></i></i><a href="{{ route('admin.peminjaman') }}"
+                        class="ml-0.5">Data Peminjaman</a>
                 </li>
                 <li class="nav-type">KATALOG BUKU</li>
-                <li class="nav-con"><i class="fa-solid fa-book"></i><a
-                        href="{{ route('admin.buku') }}" class="ml-0.5">Buku</a>
+                <li class="nav-con"><i class="fa-solid fa-book"></i><a href="{{ route('admin.buku') }}"
+                        class="ml-0.5">Buku</a>
                 </li>
-                <li class="nav-con"><i class="fa-solid fa-hashtag"></i><a
-                        href="{{ route('admin.kategori') }}" class="ml-0.5">Kategori</a>
+                <li class="nav-con"><i class="fa-solid fa-hashtag"></i><a href="{{ route('admin.kategori') }}"
+                        class="ml-0.5">Kategori</a>
                 </li>
                 <li class="nav-type">PESAN</li>
-                <li class="nav-con"><i class="fa-solid fa-inbox"></i><a href="{{ route('inbox') }}"
-                        class="ml-0.5">Inbox
+                <li class="nav-con"><i class="fa-solid fa-inbox"></i><a href="{{ route('inbox') }}" class="ml-0.5">Inbox
                         {{-- Kalau user tidak ada pesan, tidak ada pop-up inbox --}}
                         @if (Auth::user()->pesan_diterima->where('status', '=', 'terkirim')->count() == 0)
                     </a>
@@ -77,14 +76,12 @@
                         class="ml-0.5">Pesan Terkirim</a>
                 </li>
                 <li class="nav-type">LAINNYA</li>
-                <li class="nav-con"><i class="fa-solid fa-file-lines"></i><a href="{{ route('admin.laporan') }}" class="ml-0.5">Laporan
+                <li class="nav-con"><i class="fa-solid fa-file-lines"></i><a href="{{ route('admin.laporan') }}"
+                        class="ml-0.5">Laporan
                         Perpustakaan</a>
                 </li>
-                <li class="nav-con"><i class="fa-solid fa-tablet-screen-button"></i></i><a href="{{ route('admin.identitas') }}"
-                        class="ml-0.5">Identitas Aplikasi</a>
-                </li>
-                <li class="nav-con"><i class="fa-solid fa-right-from-bracket"></i><a href="{{ route('logout') }}"
-                        class="ml-0.5">Logout</a>
+                <li class="nav-con"><i class="fa-solid fa-tablet-screen-button"></i></i><a
+                        href="{{ route('admin.identitas') }}" class="ml-0.5">Identitas Aplikasi</a>
                 </li>
             </ul>
             <hr>
@@ -97,6 +94,9 @@
 
             </div>
         </div>
+    </div>
+    <div class="top-bar align-items-center justify-content-end pr-2">
+        <h5 class="m-0 text-white"><i class="fa-solid fa-envelope pr-3"></i> <i class="fa-solid fa-grip-lines-vertical pr-3"></i><a href="{{ route('logout') }}" class="text-white" style="text-decoration: none"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></h5>
     </div>
     <div class="right-section p-4">
         <div class="container mt-4">
